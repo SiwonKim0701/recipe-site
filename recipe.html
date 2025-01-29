@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>요리 추천</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>요리 추천</h1>
+  <p>요리를 추천해주세요!</p>
+  <form id="recommendForm">
+    <label for="recipe">추천 요리:</label><br>
+    <input type="text" id="recipe" placeholder="추천 요리를 입력하세요"><br><br>
+    <label for="details">설명:</label><br>
+    <textarea id="details" placeholder="요리에 대한 간단한 설명"></textarea><br><br>
+    <button type="button" onclick="submitRecommendation()">추천 보내기</button>
+  </form>
+  <p id="message" style="color: green; display: none;">전송됨!</p> <!-- 전송 메시지 -->
+  <script src="script.js"></script>
+</body>
+</html>
