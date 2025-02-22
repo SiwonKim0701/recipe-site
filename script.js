@@ -48,7 +48,7 @@ function submitRecommendation() {
   }
 
   // 서버로 데이터 전송 (임시 예제)
-  fetch('http://localhost:3000/recommend', {
+  fetch('cool-kitchen-recipe-site.up.railway.app', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
