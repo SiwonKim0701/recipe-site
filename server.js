@@ -1,5 +1,6 @@
 const express = require("express");
 const serverless = require("serverless-http");
+const path = require("path");
 
 const app = express();
 const router = express.Router();
@@ -7,7 +8,7 @@ const router = express.Router();
 app.use(express.static("public"));
 app.use(express.json()); // JSON 데이터 처리를 위한 미들웨어 추가
 
-// 관리자 로그인 정보 (보안상 .env 파일로 저장하는 것이 좋음)
+// 관리자 로그인 정보
 const adminCredentials = {
     username: "admin",
     password: "admin123"
@@ -23,12 +24,11 @@ router.post("/admin-login", (req, res) => {
     const { username, password } = req.body;
 
     if (username === adminCredentials.username && password === adminCredentials.password) {
-        res.json({ success: true, message: "관리자 로그인 성공!" });
+        res.json({ success: true, redirect: "/admin-dashboard.html" });
     } else {
         res.status(401).json({ success: false, message: "로그인 실패: 잘못된 아이디 또는 비밀번호." });
     }
 });
 
 app.use("/.netlify/functions/server", router);
-
 module.exports.handler = serverless(app);
