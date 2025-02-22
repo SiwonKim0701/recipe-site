@@ -72,3 +72,25 @@ function submitRecommendation() {
   document.getElementById('recipe').value = '';
   document.getElementById('details').value = '';
 }
+
+document.getElementById("adminLoginForm").addEventListener("submit", function (event) {
+  event.preventDefault(); // 기본 폼 제출 방지
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  fetch("https://your-netlify-app.netlify.app/.netlify/functions/server/admin-login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+  })
+  .then(response => response.json())
+  .then(data => {
+      if (data.success) {
+          window.location.href = data.redirect; // 로그인 성공 시 관리자 대시보드 이동
+      } else {
+          alert(data.message); // 로그인 실패 메시지 표시
+      }
+  })
+  .catch(error => console.error("Error:", error));
+});
